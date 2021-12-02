@@ -1,0 +1,92 @@
+//GIT
+git commit -m "laravelTest2"
+$ git push -u origin main
+
+
+
+////////// Setup projekta
+//Kreira folder laraveltest2 i instalira sve 
+composer create-project --prefer-dist laravel/laravel baza-korisnika-laravel
+
+//Instalira tailwind -jos ne znam sto :D
+composer require laravel-frontend-presets/tailwindcss --dev
+
+// Autentifikacija pomocu laravel Breeze
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install
+npm run dev
+
+da bi uradio migrate treba jos:
+
+"Update your /app/Providers/AppServiceProvider.php to contain:
+
+use Illuminate\Support\Facades\Schema; //Ovo je bitno dodati gore 
+
+/**
+ * Bootstrap any application services.
+ *
+ * @return void
+ */
+public function boot()
+{
+    Schema::defaultStringLength(191); //ovo samo dodas u boot metodu 
+}"
+
+
+////////// dodati u App>Providers>AppServiceProvider
+use Illuminate\Support\Facades\Schema;
+//kako ne bi izbacivao gresku sa userima  i poslije obrises tabelu usera iz baze
+
+/////////////////////////////////////////////
+pa onda idemo:
+
+php artisan migrate mada sam prvo morao dropovati user tabelu iako je u migraciji ok sve
+
+//Kreira model a -m reira migraciju
+php artisan make:model Car -m
+
+
+
+//Kreira kontroler CarsController a --resource kreira CRUD u kontroleru
+php artisan make:controller CarsController --resource
+
+//Kreiranje nove komponente
+php artisan make:component ImeKomponente
+
+
+//Iscitave sve endpointe za rute
+php artisan route:list
+
+//Brise kers konfiguracije ako si direo migracije i tako to\
+php artisan config:cache
+
+php artisan optimize:clear
+
+//Pokretanje mySql-a u CMD-u
+mysql -u root -p
+
+//Rollback ako si napravio novu migraciju da se vratis korak nayad pa opet migriras
+php artisan migrate:rollback
+
+//Kreiranje faktorija "Car Factory" po modelu "Car"
+php artisan make:factory CarFactory --model=Car
+
+//Refresh totalno laravela, svi modeli plus seeder
+php artisan migrate:refresh --seed
+
+//Pokretanje konkretnog seedera "AutaSeed"
+php artisan db:seed --class=AutaSeed
+
+
+
+
+//// Kreiranje API-ja  /////
+
+// pokreće devlopment server
+php artisan serve 
+
+//Kad pozivas request more se dodati /api u rutu 
+http://127.0.0.1:8000/api/test
+
+

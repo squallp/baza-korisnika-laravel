@@ -1,0 +1,24 @@
+.main-spisak {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dugmici-spisak {
+    display: flex;
+    justify-content: space-between;
+    border-top: #d0d3df solid 1px;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.komplet-spisak {
+    background-color: #e0e5e7;
+    padding: 20px;
+}
+
+.komentar-spisak {
+    display: flex;
+    flex: 0 0 100%;
+}
+
+
