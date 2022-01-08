@@ -1,23 +1,35 @@
+///////////////////////////////////////// Predradnje /////////////////////////////////////////
+Instaliraj niode.js softver za menadzment paketa i softvera
+Npm Install - https://nodejs.org/en/download/
+
+Instaliraj GiT bash foftver za terminal i git
+https://git-scm.com/downloads
+
 //GIT
 git commit -m "laravelTest2"
 $ git push -u origin main
 
 
-
+///////////////////////////////////////// 1 /////////////////////////////////////////
 ////////// Setup projekta
-//Kreira folder laraveltest2 i instalira sve 
+//Kreira folder baza-korisnika-laravel i instalira sve 
 composer create-project --prefer-dist laravel/laravel baza-korisnika-laravel
 
+///////////////////////////////////////// 2 /////////////////////////////////////////
 //Instalira tailwind -jos ne znam sto :D
 composer require laravel-frontend-presets/tailwindcss --dev
 
+///////////////////////////////////////// 3 /////////////////////////////////////////
 // Autentifikacija pomocu laravel Breeze
+ako nema composera uradi:
+composer install
 composer require laravel/breeze --dev
 php artisan breeze:install
 npm install
 npm run dev
 
-da bi uradio migrate treba jos:
+///////////////////////////////////////// 4 /////////////////////////////////////////
+da bi uradio migrate treba jos dodati ovaj kod:
 
 "Update your /app/Providers/AppServiceProvider.php to contain:
 
@@ -34,12 +46,13 @@ public function boot()
 }"
 
 
+///////////////////////////////////////// 5 /////////////////////////////////////////
 ////////// dodati u App>Providers>AppServiceProvider
 use Illuminate\Support\Facades\Schema;
-//kako ne bi izbacivao gresku sa userima  i poslije obrises tabelu usera iz baze
+//kako ne bi izbacivao gresku sa userima  i poslije obrises tabelu usera iz baze, povezano sa breezom
 
-/////////////////////////////////////////////
-pa onda idemo:
+
+///////////////////////////////////////// 6 /////////////////////////////////////////
 
 php artisan migrate mada sam prvo morao dropovati user tabelu iako je u migraciji ok sve
 
@@ -51,6 +64,8 @@ php artisan make:model Car -m
 //Kreira kontroler CarsController a --resource kreira CRUD u kontroleru
 php artisan make:controller CarsController --resource
 
+
+///////////////////////////////////////// 7 /////////////////////////////////////////
 //Kreiranje nove komponente
 php artisan make:component ImeKomponente
 
@@ -66,9 +81,11 @@ php artisan optimize:clear
 //Pokretanje mySql-a u CMD-u
 mysql -u root -p
 
-//Rollback ako si napravio novu migraciju da se vratis korak nayad pa opet migriras
+//Rollback ako si napravio novu migraciju da se vratis korak nazad pa opet migriras
 php artisan migrate:rollback
 
+
+///////////////////////////////////////// 8 /////////////////////////////////////////
 //Kreiranje faktorija "Car Factory" po modelu "Car"
 php artisan make:factory CarFactory --model=Car
 
@@ -80,7 +97,7 @@ php artisan db:seed --class=AutaSeed
 
 
 
-
+///////////////////////////////////////// 9 /////////////////////////////////////////
 //// Kreiranje API-ja  /////
 
 // pokreće devlopment server

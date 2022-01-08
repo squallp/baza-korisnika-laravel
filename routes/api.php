@@ -13,21 +13,24 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/test', function (Request $request){
-    return 'Autentifikovan';
+
+Route::post('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken($request->token_name);
+    return ['token' => $token->plainTextToken];
 });
 
 
-Route::get('/klijenti', [\App\Http\Controllers\KlijentisController::class, 'indexApi']);
-
-Route::get('/kvarovi', [\App\Http\Controllers\KvarsController::class, 'indexApi'])->name('kvarovi');
-
-
+/*
 Route::middleware('auth:sanctum')->get('/user/', function (Request $request) {
     return $request->user();
 });
- /*
+*/
+
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/user', RatingController::class);
+    Route::get('/klijenti', [\App\Http\Controllers\KlijentisController::class, 'indexApi']);
+    Route::get('/kvarovi', [\App\Http\Controllers\KvarsController::class, 'indexApi'])->name('kvarovi');
+    Route::get('/user/', function (Request $request) {
+        return $request->user();
+    });
 });
- */
+

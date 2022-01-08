@@ -9,7 +9,7 @@
 
 ## About App
 This is application for managing clients of car mechanic shop where you can manage clients and their malfunctions.
-every registrated user is a mechanioc shop.
+Every registrated user is a mechanic shop.
 
 ## About Laravel
 
